@@ -55,6 +55,47 @@ class _StudentListRouteState extends State<StudentListRoute> {
               itemCount: studentList.length)
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context, builder: (context) => filterDialog(context));
+        },
+        child: const Icon(Icons.filter_alt_outlined),
+      ),
+    );
+  }
+
+  Widget filterDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text("Filter students by..."),
+      content: ListView(
+        children: [
+          ListTile(
+            title: const Text("Date"),
+            onTap: () {
+              print("filter by date");
+            },
+          ),
+          ListTile(
+            title: const Text("Course"),
+            onTap: () {
+              print("filter by course");
+            },
+          ),
+          ListTile(
+            title: const Text("College"),
+            onTap: () {
+              print("filter by college");
+            },
+          ),
+          ListTile(
+            title: const Text("Student No."),
+            onTap: () {
+              print("filter by student no.");
+            },
+          ),
+        ],
+      ),
     );
   }
 
