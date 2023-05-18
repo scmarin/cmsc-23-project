@@ -36,7 +36,7 @@ class _StudentListRouteState extends State<StudentListRoute> {
 
   List<Student> studentList = [];
 
-  List<Student> studentsQuarantined = [];
+  int studentsQuarantined = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _StudentListRouteState extends State<StudentListRoute> {
       ),
       body: Column(
         children: [
-          Text("Students quarantined: ${studentsQuarantined.length}"),
+          Text("Students quarantined: $studentsQuarantined"),
           ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) =>
@@ -63,6 +63,17 @@ class _StudentListRouteState extends State<StudentListRoute> {
     return ListTile(
       leading: const Icon(Icons.person),
       title: Text(studentList[index].name),
+      trailing: TextButton(
+        child: const Text("Add to Quarantine"),
+        onPressed: () {
+          if (studentList[index].status != "Under Quarantine") {
+            studentList[index].status = "Under Quarantine";
+            setState(() {
+              studentsQuarantined++;
+            });
+          }
+        },
+      ),
       onTap: () {
         showDialog(
           context: context,
